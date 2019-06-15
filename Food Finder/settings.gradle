@@ -1,1 +1,1 @@
-include ':FoodFinder', ':gui'
+include ':FoodFinder', ':gui', ':authentication'
