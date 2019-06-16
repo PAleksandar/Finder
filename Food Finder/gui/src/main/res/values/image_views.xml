@@ -65,5 +65,90 @@
 
     </style>
 
+    <style name="orange_user_icon">
+        <item name="android:layout_width">36dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginStart">8dp </item>
+        <item name="android:layout_marginLeft"> 8dp</item>
+        <item name="android:layout_marginTop"> 8dp</item>
+        <item name="android:layout_marginEnd"> 8dp</item>
+        <item name="android:layout_marginRight">8dp </item>
+        <item name="android:layout_marginBottom">8dp </item>
+        <item name="android:src">@drawable/orange_user_icon</item>
+
+    </style>
+
+    <style name="orange_key">
+        <item name="android:layout_width">36dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginStart">8dp </item>
+        <item name="android:layout_marginLeft"> 8dp</item>
+        <item name="android:layout_marginTop"> 8dp</item>
+        <item name="android:layout_marginEnd"> 8dp</item>
+        <item name="android:layout_marginRight">8dp </item>
+        <item name="android:layout_marginBottom">8dp </item>
+        <item name="android:src">@drawable/orange_key</item>
+    </style>
+
+    <style name="orange_latter">
+        <item name="android:layout_width">36dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginStart">8dp </item>
+        <item name="android:layout_marginLeft"> 8dp</item>
+        <item name="android:layout_marginTop"> 8dp</item>
+        <item name="android:layout_marginEnd"> 8dp</item>
+        <item name="android:layout_marginRight">8dp </item>
+        <item name="android:layout_marginBottom">8dp </item>
+        <item name="android:src">@drawable/orange_latter</item>
+    </style>
+
+    <style name="orange_phone">
+        <item name="android:layout_width">36dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginStart">8dp </item>
+        <item name="android:layout_marginLeft"> 8dp</item>
+        <item name="android:layout_marginTop"> 8dp</item>
+        <item name="android:layout_marginEnd"> 8dp</item>
+        <item name="android:layout_marginRight">8dp </item>
+        <item name="android:layout_marginBottom">8dp </item>
+        <item name="android:src">@drawable/orange_phone</item>
+    </style>
+
+    <style name="orange_gift">
+        <item name="android:layout_width">36dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginStart">8dp </item>
+        <item name="android:layout_marginLeft"> 8dp</item>
+        <item name="android:layout_marginTop"> 8dp</item>
+        <item name="android:layout_marginEnd"> 8dp</item>
+        <item name="android:layout_marginRight">8dp </item>
+        <item name="android:layout_marginBottom">8dp </item>
+        <item name="android:src">@drawable/orange_gift</item>
+    </style>
+
+    <style name="grey_facebook">
+        <item name="android:layout_width">54dp</item>
+        <item name="android:layout_height">51dp</item>
+        <item name="android:layout_marginStart">8dp </item>
+        <item name="android:layout_marginLeft"> 8dp</item>
+        <item name="android:layout_marginTop"> 8dp</item>
+        <item name="android:layout_marginEnd"> 8dp</item>
+        <item name="android:layout_marginRight">8dp </item>
+        <item name="android:layout_marginBottom">8dp </item>
+        <item name="android:src">@drawable/grey_facebook_icon</item>
+    </style>
+
+    <style name="grey_google">
+        <item name="android:layout_width">54dp</item>
+        <item name="android:layout_height">51dp</item>
+        <item name="android:layout_marginStart">8dp </item>
+        <item name="android:layout_marginLeft"> 8dp</item>
+        <item name="android:layout_marginTop"> 8dp</item>
+        <item name="android:layout_marginEnd"> 8dp</item>
+        <item name="android:layout_marginRight">8dp </item>
+        <item name="android:layout_marginBottom">8dp </item>
+        <item name="android:src">@drawable/grey_google_icon</item>
+
+    </style>
 
 </resources>
