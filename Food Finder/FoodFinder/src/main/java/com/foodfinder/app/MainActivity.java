@@ -1,11 +1,13 @@
 package com.foodfinder.app;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -21,49 +23,76 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText userEmail, userPassword;
-    Button DelivererRegisterButton;
-    private FirebaseAuth mAuth;
+    public static final int  loginRequestCode=LogInActivity.loginRequestCode;
+    public static final int registerRequestCode=RegisterActivity.registerRequestCode;
+
+    Button btnLogIn;
+    Button btnRegister;
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setActionBar();
+        initializeComponent();
+
+        btnLogIn.setOnClickListener(logInListener);
+        btnRegister.setOnClickListener(registerListener);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch(requestCode) {
+            case loginRequestCode:
+                if (resultCode == RESULT_OK) {
+                    Bundle res = data.getExtras();
+                    String result = res.getString("results");
+                    Log.d("FIRST", "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!result:"+result);
+                    Intent intent = new Intent(mContext, NavigationActivity.class);
+                    startActivity(intent);
+
+                }
+                break;
+            case registerRequestCode:
+                if (resultCode == RESULT_OK) {
+                    Bundle res = data.getExtras();
+                    String result = res.getString("results");
+//                    Log.d("FIRST", "result:"+result);
+                    Intent intent = new Intent(mContext, NavigationActivity.class);
+                    startActivity(intent);
+                }
+                break;
+        }
+    }
+
+    View.OnClickListener logInListener=new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(mContext, LogInActivity.class);
+            startActivityForResult(intent,loginRequestCode);
+        }
+    };
+
+    View.OnClickListener registerListener=new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(mContext, RegisterActivity.class);
+            startActivityForResult(intent,registerRequestCode);
+        }
+    };
+
+    private void setActionBar()
+    {
         ActionBar actionBar= getSupportActionBar();
         actionBar.hide();
+    }
 
-        //TestBase bt=new TestBase();
-
-        Log.d("!!!!!!!!radi!!!!", "onCreate:  ");
-       // bt.readData();
-        Log.d("!!!!!!!!radi!!!!", "onCreate:  ");
-
-        Intent intent = new Intent(this, NavigationActivity.class);
-        startActivity(intent);
-
-//        mAuth = FirebaseAuth.getInstance();
-//
-//        mAuth.createUserWithEmailAndPassword("aca@gmail.com", "sifra12345").addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<AuthResult> task) {
-//
-//                if (task.isSuccessful()) {
-//                    // SignUp in success, Direct to the dashboard Page...
-//                    Toast.makeText(MainActivity.this, "Authentication Successfully completed", Toast.LENGTH_SHORT).show();
-//                   // Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-//                   // startActivity(intent);
-//
-//                } else {
-//                    // If sign in fails, display a message to the user.
-//                    Toast.makeText(MainActivity.this, "Authentication failed User already exits",
-//                            Toast.LENGTH_SHORT).show();
-//                }
-//
-//            }
-//
-//
-//        });
-
+    private void initializeComponent()
+    {
+        btnLogIn=(Button) findViewById(R.id.button_log_in);
+        btnRegister=(Button) findViewById(R.id.button_register);
+        mContext=getApplicationContext();
     }
 }
