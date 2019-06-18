@@ -15,10 +15,14 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LogInActivity extends AppCompatActivity {
 
@@ -41,7 +45,7 @@ public class LogInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                logInUser("aca@gmail.com","sifra12345");
+                logInUser("aleksandar@gmail.com","sifra123");
 
 
 
@@ -82,6 +86,28 @@ public class LogInActivity extends AppCompatActivity {
                     if (user != null) {
                         uid = user.getUid();
                     }
+
+                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("isActive");
+                    ref.setValue(true).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            // Write was successful!
+                            // ...
+                            Toast.makeText(LogInActivity.this, "LogOut Successfully completed", Toast.LENGTH_LONG).show();
+
+
+
+                        }
+                    })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    // Write failed
+                                    // ...
+                                    Toast.makeText(LogInActivity.this, "LogOut failed ", Toast.LENGTH_LONG).show();
+
+                                }
+                            });
 
                     Bundle conData = new Bundle();
                     conData.putString("results", uid);

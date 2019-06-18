@@ -1,6 +1,7 @@
 package com.foodfinder.acount;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Account implements Serializable {
 
@@ -8,7 +9,7 @@ public class Account implements Serializable {
     private String userName;
     private String email;
     private String password;
-    private String birthday;
+    private Date birthday;
     private String phone;
     private String profileImage;
     private boolean isActive;
@@ -22,7 +23,7 @@ public class Account implements Serializable {
         isDriver = driver;
     }
 
-    public Account(String userId, String userName, String email, String password, String birthday, String phone, String profileImage, boolean isActive, boolean isDriver) {
+    public Account(String userId, String userName, String email, String password, Date birthday, String phone, String profileImage, boolean isActive, boolean isDriver) {
         this.userId = userId;
         this.userName = userName;
         this.email = email;
@@ -68,11 +69,11 @@ public class Account implements Serializable {
         this.password = password;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 

@@ -134,6 +134,7 @@ public class NavigationActivity extends AppCompatActivity {
 
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(mContext, MainActivity.class);
+                finish();
                 startActivity(intent);
                 break;
         }

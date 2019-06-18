@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
                     String result = res.getString("results");
                     Log.d("FIRST", "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!result:"+result);
                     Intent intent = new Intent(mContext, NavigationActivity.class);
+                    finish();
                     startActivity(intent);
 
                 }
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     String result = res.getString("results");
 //                    Log.d("FIRST", "result:"+result);
                     Intent intent = new Intent(mContext, NavigationActivity.class);
+                    finish();
                     startActivity(intent);
                 }
                 break;
