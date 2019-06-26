@@ -110,7 +110,7 @@ public class NavigationActivity extends AppCompatActivity {
                 if (user != null) {
                     uid = user.getUid();
                 }
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("isActive");
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("active");
                 ref.setValue(false).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

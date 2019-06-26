@@ -42,13 +42,15 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class RegisterActivity extends AppCompatActivity {
     private static final int SELECT_PICTURE_ACTIVITY_REQUEST_CODE = 1;
 
-    EditText userEmail, userPassword, userName, userPhone, userBirthday;
+    EditText userEmail, userPassword, userName,lastName, userPhone, userBirthday;
     Button DelivererRegisterButton;
     Button CustomRegisterButton;
     Button addImageButton;
@@ -266,6 +268,7 @@ public class RegisterActivity extends AppCompatActivity {
         userEmail = (EditText) findViewById(R.id.email_register);
         userPassword = (EditText) findViewById(R.id.password_register);
         userName = (EditText) findViewById(R.id.user_name_register);
+        lastName=(EditText) findViewById(R.id.last_name_register) ;
         userPhone = (EditText) findViewById(R.id.phone_register);
         userBirthday = (EditText) findViewById(R.id.birthday_register);
 
@@ -297,9 +300,10 @@ public class RegisterActivity extends AppCompatActivity {
         String Email = userEmail.getText().toString().trim();
         String Password = userPassword.getText().toString().trim();
         String UserName = userName.getText().toString().trim();
+        String LastName=lastName.getText().toString().trim();
         String UserPhone = userPhone.getText().toString().trim();
 
-        if(TextUtils.isEmpty(Email) || TextUtils.isEmpty(Password) || TextUtils.isEmpty(UserName) || TextUtils.isEmpty(UserPhone))
+        if(TextUtils.isEmpty(Email) || TextUtils.isEmpty(Password) || TextUtils.isEmpty(UserName) || TextUtils.isEmpty(LastName) || TextUtils.isEmpty(UserPhone))
         {
             test=false;
         }
@@ -329,12 +333,14 @@ public class RegisterActivity extends AppCompatActivity {
         String Email = userEmail.getText().toString();
         String Password = userPassword.getText().toString();
         String UserName = userName.getText().toString();
+        String LastName=lastName.getText().toString();
         String UserPhone = userPhone.getText().toString();
 
 
         Account account=new Account();
         account.setUserId(uid);
         account.setUserName(UserName);
+        account.setLastName(LastName);
         account.setEmail(Email);
         account.setPassword(Password);
         account.setPhone(UserPhone);
@@ -342,6 +348,15 @@ public class RegisterActivity extends AppCompatActivity {
         account.setProfileImage(imageUri);
         account.setActive(true);
         account.setDriver(isDriver);
+
+        List<String> friends=new ArrayList<String>();
+        account.setFriends(friends);
+
+        List<Float> ranks=new ArrayList<Float>();
+        ranks.add(new Float(3.4));
+        ranks.add(new Float(2.5));
+        account.setRanks(ranks);
+
 
         DatabaseReference ref = mRef.child("users").child(uid);
         ref.setValue(account).addOnSuccessListener(new OnSuccessListener<Void>() {

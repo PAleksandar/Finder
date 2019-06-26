@@ -2,16 +2,19 @@ package com.foodfinder.authentication;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,6 +30,8 @@ import com.google.firebase.database.FirebaseDatabase;
 public class LogInActivity extends AppCompatActivity {
 
     public static final int loginRequestCode=90;
+    public static final String LOG_IN_DATA="LOG_IN_DATA";
+    EditText emailInput, passwordInpit;
     Button btnLogIn;
     FirebaseAuth mAuth;
 
@@ -37,20 +42,31 @@ public class LogInActivity extends AppCompatActivity {
 
         setStatusBar();
         setActionBar();
+        initializeComponent();
+        setData();
 
-        btnLogIn=(Button) findViewById(R.id.button_log_in);
-        mAuth = FirebaseAuth.getInstance();
+
 
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                logInUser("aleksandar@gmail.com","sifra123");
+                logIn();
+              //  logInUser("aleksandar@gmail.com","sifra123");
 
 
 
             }
         });
+
+    }
+
+    private void initializeComponent()
+    {
+        emailInput=(EditText) findViewById(R.id.email_log_in);
+        passwordInpit=(EditText) findViewById(R.id.password_log_in);
+        btnLogIn=(Button) findViewById(R.id.button_log_in);
+        mAuth = FirebaseAuth.getInstance();
 
     }
 
@@ -70,7 +86,56 @@ public class LogInActivity extends AppCompatActivity {
         }
     }
 
-    private void logInUser(String email, String password) {
+    private void setData()
+    {
+        SharedPreferences prefs = getSharedPreferences(LOG_IN_DATA, MODE_PRIVATE);
+        if(prefs!=null)
+        {
+            String email = prefs.getString("email", null);
+            String password = prefs.getString("password", null);
+            if (email != null && password!=null) {
+
+                emailInput.setText(email);
+                passwordInpit.setText(password);
+
+            }
+        }
+
+    }
+
+    private boolean validation(String email, String password)
+    {
+        boolean test;
+
+        if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password))
+        {
+            test=false;
+        }
+        else {
+            test=true;
+        }
+
+        return test;
+    }
+
+    private void logIn()
+    {
+        String email=emailInput.getText().toString();
+        String password=passwordInpit.getText().toString();
+
+        if(!validation(email, password))
+        {
+            Toast.makeText(LogInActivity.this, "Nisu popunjena sva polja", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        logInUser(email, password);
+
+
+    }
+
+    private void logInUser(final String email, final String password) {
+
 
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
@@ -87,7 +152,7 @@ public class LogInActivity extends AppCompatActivity {
                         uid = user.getUid();
                     }
 
-                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("isActive");
+                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("active");
                     ref.setValue(true).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
@@ -108,6 +173,12 @@ public class LogInActivity extends AppCompatActivity {
 
                                 }
                             });
+
+
+                    SharedPreferences.Editor editor = getSharedPreferences(LOG_IN_DATA, MODE_PRIVATE).edit();
+                    editor.putString("email", email);
+                    editor.putString("password", password);
+                    editor.apply();
 
                     Bundle conData = new Bundle();
                     conData.putString("results", uid);

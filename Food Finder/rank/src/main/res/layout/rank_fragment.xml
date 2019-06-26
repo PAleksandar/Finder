@@ -4,11 +4,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RankFragment"
-    android:background="#9a9ff9">
+    android:background="#eeee"
+   >
 
-    <TextView
+
+
+    <SearchView
+        android:id="@+id/search_view_rank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
+        style="@style/grey_round_search_view"
+        android:theme="@style/WallSearchView">
+
+    </SearchView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rank_recycle_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Rank fragment" />
+        android:layout_marginTop="80dp">
+
+    </android.support.v7.widget.RecyclerView>
+    
+
+
+
 
 </FrameLayout>
