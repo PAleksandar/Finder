@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="WallSearchView" parent="Widget.AppCompat.SearchView">
+        <item name="iconifiedByDefault">false</item>
+        <item name="colorControlActivated">@color/grey</item>
+    </style>
+
+</resources>

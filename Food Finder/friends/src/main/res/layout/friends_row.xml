@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="100dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/image_item"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="center"
+        android:src="@drawable/grey_google_icon"
+        />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginLeft="30dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/name_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/last_name_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last name"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            />
+
+    </LinearLayout>
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginRight="20dp">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/active_status_item"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@color/grey"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
