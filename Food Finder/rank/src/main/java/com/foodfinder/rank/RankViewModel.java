@@ -54,6 +54,7 @@ public class RankViewModel extends ViewModel {
 
                 setAdapter(recyclerView);
 
+
             }
 
             @Override
