@@ -2,33 +2,23 @@ package com.foodfinder.app;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.foodfinder.authentication.LogInActivity;
 import com.foodfinder.authentication.RegisterActivity;
-import com.foodfinder.authentication.TestBase;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final int  loginRequestCode=LogInActivity.loginRequestCode;
     public static final int registerRequestCode=RegisterActivity.registerRequestCode;
 
-    Button btnLogIn;
-    Button btnRegister;
-    Context mContext;
+    private Button btnLogIn;
+    private Button btnRegister;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     Bundle res = data.getExtras();
                     String result = res.getString("results");
-                    Log.d("FIRST", "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!result:"+result);
                     Intent intent = new Intent(mContext, NavigationActivity.class);
                     finish();
                     startActivity(intent);
@@ -60,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     Bundle res = data.getExtras();
                     String result = res.getString("results");
-//                    Log.d("FIRST", "result:"+result);
                     Intent intent = new Intent(mContext, NavigationActivity.class);
                     finish();
                     startActivity(intent);

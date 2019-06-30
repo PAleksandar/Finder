@@ -49,7 +49,6 @@ public class SettingsFragment extends Fragment {
     private void initializeComponent(View view)
     {
         recyclerView = (RecyclerView) view.findViewById(R.id.settings_recycle_view);
-
         mContext=getActivity().getApplicationContext();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());

@@ -1,13 +1,21 @@
 package com.foodfinder.friends;
 
+import android.app.Activity;
 import android.arch.lifecycle.ViewModel;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.foodfinder.acount.Account;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -15,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
+import static android.support.v4.app.ActivityCompat.startActivityForResult;
 
 public class FriendsViewModel extends ViewModel {
 
@@ -25,6 +35,7 @@ public class FriendsViewModel extends ViewModel {
     private FriendsAdpter adapter;
 
     private Context mContext;
+    public static final int REQUEST_ENABLE_BLUETOOTH=1;
 
     public void initializeViewModel(Context context)
     {
@@ -102,6 +113,37 @@ public class FriendsViewModel extends ViewModel {
 
         return searchViewListener;
     }
+
+    public View.OnClickListener getAddFriendsListener()
+    {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                addFriend();
+
+            }
+        };
+    }
+
+    private void addFriend()
+    {
+        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+        Log.e("Add friend", currentFirebaseUser.getUid());
+
+        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (bluetoothAdapter == null) {
+            Log.e("Add friend", "Not suported bluetooth");
+            return;
+        }
+
+        if (!bluetoothAdapter.isEnabled()) {
+            Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult((Activity) mContext,enableIntent,REQUEST_ENABLE_BLUETOOTH,new Bundle());
+        }
+
+    }
+
 
 
 }

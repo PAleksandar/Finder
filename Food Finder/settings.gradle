@@ -1,2 +1,2 @@
-include ':FoodFinder', ':gui', ':authentication', ':home', ':friends', ':rank', ':settings', ':account'
+include ':FoodFinder', ':gui', ':authentication', ':home', ':friends', ':rank', ':settings', ':account', ':service'
 

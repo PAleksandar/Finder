@@ -47,7 +47,6 @@ public class RankFragment extends Fragment {
     {
         recyclerView = (RecyclerView) view.findViewById(R.id.rank_recycle_view);
         searchView=(SearchView) view.findViewById(R.id.search_view_rank);
-
         mContext=getActivity().getApplicationContext();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());

@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.SearchView;
 
 public class FriendsFragment extends Fragment {
@@ -21,6 +22,7 @@ public class FriendsFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private SearchView searchView;
+    private ImageView addFriends;
 
     public static FriendsFragment newInstance() {
         return new FriendsFragment();
@@ -44,6 +46,7 @@ public class FriendsFragment extends Fragment {
         mViewModel.initializeViewModel(mContext);
         mViewModel.readUsers(recyclerView);
         searchView.setOnQueryTextListener(mViewModel.getSearchListener());
+        addFriends.setOnClickListener(mViewModel.getAddFriendsListener());
 
     }
 
@@ -51,6 +54,7 @@ public class FriendsFragment extends Fragment {
     {
         recyclerView = (RecyclerView) view.findViewById(R.id.friends_recycle_view);
         searchView=(SearchView) view.findViewById(R.id.search_view_friends);
+        addFriends=(ImageView) view.findViewById(R.id.add_friends_view);
 
         mContext=getActivity().getApplicationContext();
 

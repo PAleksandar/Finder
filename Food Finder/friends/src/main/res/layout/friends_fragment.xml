@@ -14,11 +14,12 @@
         android:layout_marginTop="10dp">
 
         <ImageView
+            android:id="@+id/add_friends_view"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/add_friend_black"
             android:layout_gravity="center"
-            android:alpha="0.5"/>
+            android:alpha="0.5"
+            android:src="@drawable/add_friend_black" />
 
     </LinearLayout>
 

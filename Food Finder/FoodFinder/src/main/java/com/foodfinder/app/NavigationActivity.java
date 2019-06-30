@@ -33,9 +33,9 @@ import com.google.firebase.database.FirebaseDatabase;
 public class NavigationActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
-    ActionBar actionbar;
-    TextView textview;
-    Context mContext;
+    private ActionBar actionbar;
+    private TextView textview;
+    private Context mContext;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -67,7 +67,8 @@ public class NavigationActivity extends AppCompatActivity {
                     break;
             }
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectedFragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectedFragment,"one").commit();
+
             return true;
         }
     };
@@ -82,8 +83,6 @@ public class NavigationActivity extends AppCompatActivity {
         Fragment fragment=new HomeFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,fragment).commit();
 
-
-       // mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }

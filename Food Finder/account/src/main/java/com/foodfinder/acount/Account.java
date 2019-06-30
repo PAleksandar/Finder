@@ -18,11 +18,10 @@ public class Account implements Serializable {
     private boolean isDriver;
     private List<String> friends;
     private List<Float> ranks;
+    private Position place;
 
 
-
-
-    public Account(String userId, String userName,String lastName, String email, String password, Date birthday, String phone, String profileImage, boolean isActive, boolean isDriver, List<String> friends, List<Float> ranks) {
+    public Account(String userId, String userName, String lastName, String email, String password, Date birthday, String phone, String profileImage, boolean isActive, boolean isDriver, List<String> friends, List<Float> ranks, Position place) {
         this.userId = userId;
         this.userName = userName;
         this.lastName=lastName;
@@ -35,6 +34,7 @@ public class Account implements Serializable {
         this.isDriver=isDriver;
         this.friends=friends;
         this.ranks=ranks;
+        this.place=place;
     }
 
     public Account(){}
@@ -134,5 +134,13 @@ public class Account implements Serializable {
 
     public void setDriver(boolean driver) {
         isDriver = driver;
+    }
+
+    public Position getPlace() {
+        return place;
+    }
+
+    public void setPlace(Position place) {
+        this.place = place;
     }
 }
