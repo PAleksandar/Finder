@@ -130,7 +130,7 @@ public class HomeFragment extends Fragment {
         mContext=getActivity().getApplicationContext();
         locationManager = (LocationManager) getActivity().getSystemService(getContext().LOCATION_SERVICE);
         mprovider = locationManager.getBestProvider(new Criteria(), true);
-        Places.initialize(mContext, "AIzaSyBWywkgfdO8uiFe4BJxKPpZEqruuotsj6U");
+        Places.initialize(mContext, "key");
 
         dialogImages=new ArrayList<CircleImageView>();
         dialogNames=new ArrayList<TextView>();

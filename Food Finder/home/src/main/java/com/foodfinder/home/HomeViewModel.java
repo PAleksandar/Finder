@@ -801,7 +801,7 @@ public class HomeViewModel extends ViewModel  implements TaskLoadedCallback {
         // Output format
         String output = "json";
         // Building the url to the web service
-        String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters + "&key=" + "AIzaSyBWywkgfdO8uiFe4BJxKPpZEqruuotsj6U";
+        String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters + "&key=" + "key";
         return url;
     }
 
