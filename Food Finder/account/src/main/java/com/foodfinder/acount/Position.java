@@ -1,14 +1,17 @@
 package com.foodfinder.acount;
 
-public class Position {
+import java.io.Serializable;
+import java.util.Random;
+
+public class Position implements Serializable {
 
     private double latitude;
     private double longitude;
 
     public Position()
     {
-        latitude= 0.0;
-        longitude=0.0;
+        this.latitude = 0.0;
+        this.longitude=0.0;
 
     }
 

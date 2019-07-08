@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -78,13 +79,15 @@ public class LogInViewModel extends ViewModel {
 
     }
 
-    public View.OnClickListener getLogInOnClickListener(final String email, final String password)
+    public View.OnClickListener getLogInOnClickListener(final EditText email, final EditText password)
     {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                logIn(email, password);
+
+
+                logIn(email.getText().toString(),password.getText().toString());
 
             }
         };

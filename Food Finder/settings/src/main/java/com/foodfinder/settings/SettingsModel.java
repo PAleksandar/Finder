@@ -29,7 +29,7 @@ public class SettingsModel implements Serializable {
         settingsFunctions.add("Notification");
         settingsFunctions.add("Bluetooth");
         settingsFunctions.add("Sound");
-        settingsFunctions.add("isDriver");
+        settingsFunctions.add("Driving");
     }
 
     public  SettingsModel()

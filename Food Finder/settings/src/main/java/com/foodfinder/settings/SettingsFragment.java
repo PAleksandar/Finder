@@ -1,7 +1,9 @@
 package com.foodfinder.settings;
 
+import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 public class SettingsFragment extends Fragment {
 
@@ -41,7 +44,7 @@ public class SettingsFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(SettingsViewModel.class);
 
-        mViewModel.initializeViewModel(mContext);
+        mViewModel.initializeViewModel(mContext, getActivity());
         mViewModel.setAdapter(recyclerView);
 
     }
@@ -55,5 +58,6 @@ public class SettingsFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
     }
+
 
 }

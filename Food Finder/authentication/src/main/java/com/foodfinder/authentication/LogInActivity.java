@@ -31,7 +31,7 @@ public class LogInActivity extends AppCompatActivity {
         initializeComponent();
         setData();
 
-        btnLogIn.setOnClickListener(mViewModel.getLogInOnClickListener(emailInput.getText().toString(),passwordInpit.getText().toString()));
+        btnLogIn.setOnClickListener(mViewModel.getLogInOnClickListener(emailInput,passwordInpit));
 
 
     }

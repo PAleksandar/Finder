@@ -20,6 +20,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -63,7 +64,8 @@ public class FriendsViewModel extends ViewModel {
                     Log.e("Get Data", acc.getUserName());
                 }
 
-                setAdapter(recyclerView);
+                checkIsFriends(recyclerView);
+               // setAdapter(recyclerView);
 
             }
 
@@ -73,6 +75,61 @@ public class FriendsViewModel extends ViewModel {
             }
 
         });
+    }
+
+    private void checkIsFriends(final RecyclerView recyclerView)
+    {
+        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+        String userId=currentFirebaseUser.getUid();
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users").child(userId).child("friends");
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                GenericTypeIndicator<ArrayList<String>> t = new GenericTypeIndicator<ArrayList<String>>() {};
+
+                ArrayList<String> friends = snapshot.getValue(t);
+                ArrayList<Account> pomUsers=new ArrayList<Account>();
+                if(friends !=null)
+                {
+                    for(Account user:users)
+                    {
+                        if(inArray(user.getUserId(),friends))
+                        {
+                            pomUsers.add(user);
+                        }
+                    }
+                }
+
+                users=pomUsers;
+                setAdapter(recyclerView);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+
+        });
+
+    }
+
+    private boolean inArray(String user, ArrayList<String> friends)
+    {
+        boolean pom=false;
+
+        for(String friend:friends)
+        {
+            if(friend.equals(user))
+            {
+                pom=true;
+            }
+        }
+
+        return pom;
     }
 
     private void setAdapter(RecyclerView recyclerView)
@@ -119,9 +176,8 @@ public class FriendsViewModel extends ViewModel {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                addFriend();
-
+                Intent intent = new Intent(mContext, AddFriendActivity.class);
+                mContext.startActivity(intent);
             }
         };
     }

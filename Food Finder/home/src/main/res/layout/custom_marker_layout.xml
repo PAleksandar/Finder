@@ -17,7 +17,9 @@
                 android:src="@drawable/grey_google_icon"
         />
     <RelativeLayout
-                android:layout_width="50dp" android:layout_height="59dp"
+        android:id="@+id/driver_marker_color"
+                android:layout_width="50dp"
+                android:layout_height="59dp"
                 android:backgroundTint="@color/orange_1"
                 android:background="@drawable/marker_icon">
 
