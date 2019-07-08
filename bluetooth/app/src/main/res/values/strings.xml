@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">bluetooth</string>
+    <string name="title_activity_show_devices">ShowDevices</string>
+</resources>
